@@ -1,0 +1,44 @@
+{
+  "name": "react-accordion-solution",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "build": "gulp bundle",
+    "clean": "gulp clean",
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^11.0.1",
+    "@ckeditor/ckeditor5-editor-classic": "^11.0.0",
+    "@ckeditor/ckeditor5-editor-inline": "^11.0.0",
+    "@ckeditor/ckeditor5-essentials": "^10.1.1",
+    "@ckeditor/ckeditor5-react": "^1.0.0-beta.1",
+    "@microsoft/sp-core-library": "1.6.0",
+    "@microsoft/sp-lodash-subset": "1.6.0",
+    "@microsoft/sp-office-ui-fabric-core": "1.6.0",
+    "@microsoft/sp-webpart-base": "1.6.0",
+    "@pnp/spfx-property-controls": "1.11.0",
+    "@tinymce/tinymce-react": "^2.2.6",
+    "@types/es6-promise": "0.0.33",
+    "@types/react": "15.6.6",
+    "@types/react-dom": "15.5.6",
+    "@types/webpack-env": "1.13.1",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
+    "react-html-parser": "^2.0.2",
+    "tinymce": "^4.8.3"
+  },
+  "devDependencies": {
+    "@microsoft/sp-build-web": "1.6.0",
+    "@microsoft/sp-module-interfaces": "1.6.0",
+    "@microsoft/sp-webpart-workbench": "1.6.0",
+    "tslint-microsoft-contrib": "~5.0.0",
+    "gulp": "~3.9.1",
+    "@types/chai": "3.4.34",
+    "@types/mocha": "2.2.38",
+    "ajv": "~5.2.2"
+  }
+}

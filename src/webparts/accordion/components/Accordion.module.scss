@@ -1,0 +1,80 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.accordion {
+    font-family: inherit;
+    background-color: #fff;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.5em;
+    font-weight: $ms-font-weight-regular;
+    transition: 0.5s ease;
+    height: 50px;
+    line-height: 15px;
+
+    &::after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+        padding-bottom: 8px;
+    }
+
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    overflow: hidden;
+    //max-height: 0;
+    height: 0;
+    transition: height 0.5s ease-out;
+}
+
+.active{    
+    padding-bottom: 10px;
+
+    &::after {
+        content: "\2212";
+    }
+}
+.accordion:after {
+    content: '\002B';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    
+}
+.active:after {
+    content: "\2212";
+}
+
+.outerDiv{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    border: 1px 1px 0px 1px solid #ccc;
+}
+
+.outerDivVisited{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.editModeHolder{
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: column;
+
+  .title{
+    font-family: inherit;
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+}
