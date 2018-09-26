@@ -48,7 +48,12 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
 
   protected editiorTextOnChangeHandler = (key, event) => {
     console.log(key);
-    this.props.updateContent(key, event.target.getContent());
+    let content : string = event.target.getContent();
+    let regexBoldOpen = new RegExp(/\[b\]/);
+    let regexBoldClose = new RegExp(/\[\/b\]/);
+    content = content.replace(regexBoldOpen, "<strong>");
+    content  = content.replace(regexBoldClose, "</strong>");
+    this.props.updateContent(key, content);
   }
 
 
