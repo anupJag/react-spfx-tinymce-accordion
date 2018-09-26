@@ -14,6 +14,7 @@ import 'tinymce/plugins/advlist';
 import { Editor } from '@tinymce/tinymce-react';
 import { Placeholder } from "@pnp/spfx-controls-react/lib/Placeholder";
 import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
+//const skin : any = require('../../../../sharepoint/assets/skins/pnp');
 
 export default class Accordion extends React.Component<IAccordionProps, {}> {
 
@@ -65,7 +66,7 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
                 init={{
                   plugins: ['paste', 'link', 'lists', 'table', 'textcolor', 'advlist'],
                   toolbar1: 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent',
-                  skin_url: "../../src/webparts/accordion/skins/pnp/"
+                  skin_url: 'https://team.effem.com/sites/spfxdev/SiteAssets/skins/pnp'
                 }}
                 onChange={this.editiorTextOnChangeHandler.bind(this, index)}
                 initialValue={data.Content ? data.Content : ""}
@@ -99,7 +100,7 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
         iconText='Configure your web part'
         description='Please configure the web part.'
         buttonLabel='Configure'
-        onConfigure={this.props.onConfigure} />
+        onConfigure={this.props.onConfigure} />;
 
     const webPartTitle: JSX.Element =
       <WebPartTitle
