@@ -13,6 +13,7 @@ import { IAccordionProps } from './components/IAccordionProps';
 
 export interface IAccordionWebPartProps {
   accordionData : any[];
+  title : string;
 }
 
 export default class AccordionWebPart extends BaseClientSideWebPart<IAccordionWebPartProps> {
@@ -23,11 +24,22 @@ export default class AccordionWebPart extends BaseClientSideWebPart<IAccordionWe
       {
         accordionData : this.properties.accordionData,
         isReadMode : DisplayMode.Read === this.displayMode,
-        updateContent : this.updateContent.bind(this)
+        updateContent : this.updateContent.bind(this),
+        onConfigure : this._onConfigure.bind(this),
+        title: this.properties.title,
+        displayMode: this.displayMode,
+        fUpdateProperty: (value: string) => {
+          this.properties.title = value;
+        },
       }
     );
 
     ReactDom.render(element, this.domElement);
+  }
+
+  private _onConfigure() {
+    // Context of the web part
+    this.context.propertyPane.open();
   }
 
   protected onDispose(): void {
@@ -47,7 +59,7 @@ export default class AccordionWebPart extends BaseClientSideWebPart<IAccordionWe
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: "Accordion allows you to quickly build Show/Hide data"
           },
           groups: [
             {
@@ -70,7 +82,7 @@ export default class AccordionWebPart extends BaseClientSideWebPart<IAccordionWe
                   ]
                 })
               ]
-            }
+            }            
           ]
         }
       ]

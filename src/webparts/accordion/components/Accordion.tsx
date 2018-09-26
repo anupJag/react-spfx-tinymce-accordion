@@ -10,10 +10,10 @@ import 'tinymce/plugins/link';
 import 'tinymce/plugins/lists';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/textcolor';
-import 'tinymce/plugins/bbcode';
-import 'tinymce/plugins/pagebreak';
 import 'tinymce/plugins/advlist';
 import { Editor } from '@tinymce/tinymce-react';
+import { Placeholder } from "@pnp/spfx-controls-react/lib/Placeholder";
+import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
 
 export default class Accordion extends React.Component<IAccordionProps, {}> {
 
@@ -48,11 +48,7 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
 
   protected editiorTextOnChangeHandler = (key, event) => {
     console.log(key);
-    let content : string = event.target.getContent();
-    let regexBoldOpen = new RegExp(/\[b\]/);
-    let regexBoldClose = new RegExp(/\[\/b\]/);
-    content = content.replace(regexBoldOpen, "<strong>");
-    content  = content.replace(regexBoldClose, "</strong>");
+    let content: string = event.target.getContent();
     this.props.updateContent(key, content);
   }
 
@@ -67,9 +63,9 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
             <div>
               <Editor
                 init={{
-                  plugins: ['paste', 'link', 'lists', 'table', 'textcolor', 'bbcode', 'pagebreak', 'advlist'],
-                  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | bbcode',
-                  skin_url: "../../src/webparts/accordion/skins/lightgray/"
+                  plugins: ['paste', 'link', 'lists', 'table', 'textcolor', 'advlist'],
+                  toolbar1: 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent',
+                  skin_url: "../../src/webparts/accordion/skins/pnp/"
                 }}
                 onChange={this.editiorTextOnChangeHandler.bind(this, index)}
                 initialValue={data.Content ? data.Content : ""}
@@ -97,10 +93,27 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
       :
       null;
 
+    const placeholder: JSX.Element =
+      <Placeholder
+        iconName='Edit'
+        iconText='Configure your web part'
+        description='Please configure the web part.'
+        buttonLabel='Configure'
+        onConfigure={this.props.onConfigure} />
+
+    const webPartTitle: JSX.Element =
+      <WebPartTitle
+        displayMode={this.props.displayMode}
+        title={this.props.title}
+        updateProperty={this.props.fUpdateProperty} />;
+
     return (
       <div>
+        {webPartTitle}
         {
-          this.props.isReadMode ? renderAccordionHolder : renderAccordionEditor
+          (this.props.accordionData && this.props.accordionData.length > 0) ?
+            (this.props.isReadMode ? renderAccordionHolder : renderAccordionEditor) :
+            placeholder
         }
       </div>
     );
