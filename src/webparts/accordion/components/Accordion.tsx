@@ -28,8 +28,8 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
     let parentElem = currentElement.parentNode;
     currentElement.classList.toggle(`${styles.active}`);
     var panelControl = currentElement.nextElementSibling;
-    if (panelControl.style.height) {
-      panelControl.style.height = null;
+    if (panelControl.style.maxHeight) {
+      panelControl.style.maxHeight = null;
       parentElem.classList.remove(`${styles.outerDivVisited}`);
     }
     else {
@@ -40,7 +40,7 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
       else {
         maxheight = panelControl.scrollHeight + 30;
       }
-      panelControl.style.height = maxheight + "px";
+      panelControl.style.maxHeight = maxheight + "px";
       parentElem.classList.add(`${styles.outerDivVisited}`);
     }
   }
@@ -66,7 +66,7 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
                 init={{
                   plugins: ['paste', 'link', 'lists', 'table', 'textcolor', 'advlist'],
                   toolbar1: 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent',
-                  skin_url: 'https://team.effem.com/sites/spfxdev/SiteAssets/skins/pnp'
+                  skin_url: 'https://team.effem.com/jQuery/tinymce/skins/pnp'
                 }}
                 onChange={this.editiorTextOnChangeHandler.bind(this, index)}
                 initialValue={data.Content ? data.Content : ""}
@@ -83,7 +83,8 @@ export default class Accordion extends React.Component<IAccordionProps, {}> {
         {this.props.accordionData.map((data: any, index: number) => {
           return (
             <div className={styles.outerDiv} key={index}>
-              <button className={styles.accordion} onClick={this.clicked.bind(this)}>{escape(data.Title)}</button>
+              <button className={styles.accordion} onClick={this.clicked.bind(this)}>
+              {data.Title}</button>
               <div className={styles.panel}>
                 <div>{ReactHtmlParser(data.Content)}</div>
               </div>
